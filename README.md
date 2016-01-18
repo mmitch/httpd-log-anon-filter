@@ -83,10 +83,10 @@ Apache 2.4 supports
 [piped logs](https://httpd.apache.org/docs/2.4/logs.html#piped).
 To use httpd-log-anon-filter, add a ``CustomLog`` statement like this:
 
-    CustomLog "| /path/to/httpd-log-anon-filter.pl /var/log/apache.log" combined
+    CustomLog "| /path/to/httpd-log-anon-filter.pl /var/log/access_log" combined
 
 This will write an anonymized log to the default log location
-``/var/log/apache.log``.  Apache automatically starts and stops
+``/var/log/access_log``.  Apache automatically starts and stops
 httpd-log-anon-filter as needed, log rotation and maintenance should
 simply work as before.
 
