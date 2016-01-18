@@ -20,19 +20,19 @@ while (my $line = <STDIN>) {
     # convert salt plus hostname field contents to md5 hash
     my $md5 = md5( $salt . $ip );
     
-    if ($ip =~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/) {
-	# host field looks like IPv4:
-	# convert first 4 bytes of md5 hash to an IPv4 address
-	$ip = join( '.', unpack( 'C4', $md5));
-    }
-    else {
-	# host field contains IPv6, resolved hostname or any other junk:
+    if ($ip =~ /:/) {
+	# host field looks like IPv6:
 	# convert complete md5 hash to an IPv6 address
 	$ip = join( ':', unpack( '(H4)8', $md5));
 
 	# TODO:
 	# generate documentation addresses? 2001:db8::/32
 	# generate discard addresses? 0100::/64
+    }
+    else {
+	# host field contains IPv4, resolved hostname or any other junk:
+	# convert first 4 bytes of md5 hash to an IPv4 address
+	$ip = join( '.', unpack( 'C4', $md5));
     }
     print $log_fh "$ip $rest";
 }
