@@ -25,7 +25,7 @@ use Digest::MD5 qw(md5);
 my $logfile = shift @ARGV || die  'no output file given';
 
 open my $log_fh, '>>', $logfile or die "can't open `$logfile': $!\n";
-$log_fh->autoflush(); # better remove this on high-bandwidth sites
+$log_fh->autoflush();
 
 # get random MD5 salt
 # this will give a new salt on every invocation, meaning that the
