@@ -25,14 +25,20 @@ while (my $line = <STDIN>) {
 	# convert complete md5 hash to an IPv6 address
 	$ip = join( ':', unpack( '(H4)8', $md5));
 
-	# TODO:
-	# generate documentation addresses? 2001:db8::/32
+	# generate "documentation" addresses: 2001:db8::/32
+	# $ip = '2001:db8:' . join( ':', unpack( '(H4)6', $md5));
+
 	# generate discard addresses? 0100::/64
+	# $ip = '0100::' . join( ':', unpack( '(H4)4', $md5));
+
     }
     else {
 	# host field contains IPv4, resolved hostname or any other junk:
 	# convert first 4 bytes of md5 hash to an IPv4 address
 	$ip = join( '.', unpack( 'C4', $md5));
+
+	# generate IPs in local pool (use 10.0.0.0/8 because it's the biggest local range)
+	# $ip = '10.' . join( '.', unpack( 'C3', $md5));
     }
     print $log_fh "$ip $rest";
 }
