@@ -1,4 +1,22 @@
 #!/usr/bin/perl
+#
+# httpd-log-anon-filter - anonymizing log filter for httpd logs
+# Copyright (C) 2016  Christian Garbs <mitch@cgarbs.de>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
+
 use strict;
 use warnings;
 
@@ -30,7 +48,6 @@ while (my $line = <STDIN>) {
 
 	# generate discard addresses? 0100::/64
 	# $ip = '0100::' . join( ':', unpack( '(H4)4', $md5));
-
     }
     else {
 	# host field contains IPv4, resolved hostname or any other junk:
