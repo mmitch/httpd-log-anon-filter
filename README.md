@@ -43,7 +43,7 @@ usage
 -----
 
     usage:
-        httpd-log-anon-filter <output_logfile>
+        httpd-log-anon-filter.pl <output_logfile>
 
 httpd-log-anon-filter reads data in common or combined log format (in
 fact any data that has the IP address or hostname in the first
