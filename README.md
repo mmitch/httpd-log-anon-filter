@@ -13,26 +13,6 @@ comply with German data privacy laws.
 The project homepage is at https://github.com/mmitch/httpd-log-anon-filter
 
 
-copyright
----------
-
-httpd-log-anon-filter - anonymizing log filter for httpd logs  
-Copyright (C) 2016  Christian Garbs <mitch@cgarbs.de>
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 dependencies
 ------------
 
@@ -83,7 +63,9 @@ Apache 2.4 supports
 [piped logs](https://httpd.apache.org/docs/2.4/logs.html#piped).
 To use httpd-log-anon-filter, add a ``CustomLog`` statement like this:
 
-    CustomLog "|/path/to/httpd-log-anon-filter.pl /var/log/access_log" combined
+```
+CustomLog "|/path/to/httpd-log-anon-filter.pl /var/log/access_log" combined
+```
 
 This will write an anonymized log to the default log location
 ``/var/log/access_log``.  Apache automatically starts and stops
@@ -97,7 +79,7 @@ customization
 Currently, httpd-log-anon-filter can't really be customized.  You can
 comment/uncomment some parts of the code:
 
- * IPv6 addresses are be default completely randomized.  Most hashes
+ * IPv6 addresses are by default randomized completely.  Most hashes
    will propably be non-existing addresses, but others will be real
    and your log will simply contain wrong information (well, that's
    the point in the first place).  If for any reason you want to 'play
@@ -107,4 +89,24 @@ comment/uncomment some parts of the code:
 
  * IPv4 addresses are also completely randomized.  Here the
    alternative is to use addresses from ``10.0.0.0/8`` (private
-   address range), but that leaves you only with 24 random bits.
+   address range), but that leaves you with only 24 random bits.
+
+
+copyright
+---------
+
+httpd-log-anon-filter - anonymizing log filter for httpd logs  
+Copyright (C) 2016  Christian Garbs <mitch@cgarbs.de>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
