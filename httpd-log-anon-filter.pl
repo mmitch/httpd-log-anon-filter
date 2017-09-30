@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 #
 # httpd-log-anon-filter - anonymizing log filter for httpd logs
-# Copyright (C) 2016  Christian Garbs <mitch@cgarbs.de>
+# Copyright (C) 2016,2017  Christian Garbs <mitch@cgarbs.de>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ $log_fh->autoflush();
 my $salt = chr(rand(256)) . chr(rand(256)) . chr(rand(256)) . chr(rand(256));
 
 while (my $line = <STDIN>) {
-    my ($ip, $rest) = split /\s+/, $line, 2;
+    my ($ip, $tail) = split /\s+/, $line, 2;
 
     # convert salt plus hostname field contents to md5 hash
     my $md5 = md5( $salt . $ip );
@@ -57,7 +57,7 @@ while (my $line = <STDIN>) {
 	# generate IPs in local pool (use 10.0.0.0/8 because it's the biggest local range)
 	# $ip = '10.' . join( '.', unpack( 'C3', $md5));
     }
-    print $log_fh "$ip $rest";
+    print $log_fh "$ip $tail";
 }
 
 close $log_fh or die "can't close `$logfile': $!\n";
